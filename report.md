@@ -1,24 +1,31 @@
-LAB 9
+#LAB 9
 
 1. Đăng nhập vào tài khoảng Github
 
 2. Truy cập vào link
 Chọn fork
+![image](https://github.com/user-attachments/assets/78bc5f7e-3354-46d3-93ae-37df89da9613)
 
 Click Create fork
+![image](https://github.com/user-attachments/assets/bf0a8369-8568-401f-a337-7457d2c25a3b)
 
-EXERCISE 1
+## EXERCISE 1
 
 Thực thi lệnh sau trong CMD: git clone để clone GitHub repo về máy của mình
+![image](https://github.com/user-attachments/assets/9d638ee5-8343-43e5-b3c9-7f08d1101a2f)
 
-Sau đó tiến hành chạy lệnh cd data-engineering-practice/Exercises/Exercise-1 để truy cập vào thư mục Exercise-1
+Sau đó tiến hành chạy lệnh `cd data-engineering-practice/Exercises/Exercise-1` để truy cập vào thư mục Exercise-1
 
-Tiếp tục thực hiện lệnh: docker build --tag=exercise-1 . build Docker image Quá trình sẽ mất vài phút
+Tiếp tục thực hiện lệnh: `docker build --tag=exercise-1` . build Docker image Quá trình sẽ mất vài phút
+![image](https://github.com/user-attachments/assets/852153d1-d493-47ea-b267-8a5b6843be07)
+![image](https://github.com/user-attachments/assets/ebf1c936-ba6c-4796-8edc-a7ef97b8eaec)
+![image](https://github.com/user-attachments/assets/1e3beb59-a0c5-4d13-9f90-209467c30530)
 
 Sử dụng Visual để chạy main.py
+![image](https://github.com/user-attachments/assets/2f38e384-09de-4d2d-aa2b-3f0613983592)
 
 Code sử dụng cho main.py
-
+```
 import os
 
 import requests
@@ -96,20 +103,21 @@ def main():
 if \_\_name\_\_ == "\_\_main\_\_":
 
     main()
+```
+- Tạo thư mục downloads nếu chưa tồn tại
 
-Tạo thư mục downloads nếu chưa tồn tại
+- Tải từng file từ danh sách download\_uris
 
-Tải từng file từ danh sách download\_uris
+- Giữ tên gốc của file từ URL
 
-Giữ tên gốc của file từ URL
+- Giải nén .zip thành .csv
 
-Giải nén .zip thành .csv
+- Xóa file .zip sau khi giải nén
 
-Xóa file .zip sau khi giải nén
+- Bỏ qua URL không hợp lệ (ví dụ: cái Divvy\_Trips\_2220\_Q1.zip không tồn tại)
 
-Bỏ qua URL không hợp lệ (ví dụ: cái Divvy\_Trips\_2220\_Q1.zip không tồn tại)
-
-Sau khi save main.py, chạy lệnh docker-compose up run (mất khoảng 5 phút)
+Sau khi save `main.py`, chạy lệnh `docker-compose up run` (mất khoảng 5 phút)
+![image](https://github.com/user-attachments/assets/1937ba2e-ce1e-4977-a496-4767dd5d4ee6)
 
 EXERCISE 2
 
