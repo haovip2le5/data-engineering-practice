@@ -1,30 +1,39 @@
-# LAB 9
+# LAB 9: ULTIMATE PRACTICE
 
-1. Đăng nhập vào tài khoảng Github
+## Danh sách thành viên:
+>> 1. Nguyễn Anh Huy
+>> 2. Lê Trung Hữu
+>> 3. Huỳnh Nhật Hào
+>> 4. Trần Nhựt Hào
+>> 5. Phan Gia Huy
 
-2. Truy cập vào link
-Chọn fork
+** BÀI LÀM **
+> 1. Đăng nhập vào tài khoảng Github
+
+> 2. Truy cập vào link:
+> 
+> 3. Chọn fork
 ![image](https://github.com/user-attachments/assets/78bc5f7e-3354-46d3-93ae-37df89da9613)
 
-Click Create fork
+> 4. Click Create fork
 ![image](https://github.com/user-attachments/assets/bf0a8369-8568-401f-a337-7457d2c25a3b)
 
 ## EXERCISE 1
 
-Thực thi lệnh sau trong CMD: git clone để clone GitHub repo về máy của mình
+> 1. Thực thi lệnh sau trong CMD: git clone để clone GitHub repo về máy của mình
 ![image](https://github.com/user-attachments/assets/9d638ee5-8343-43e5-b3c9-7f08d1101a2f)
 
-Sau đó tiến hành chạy lệnh `cd data-engineering-practice/Exercises/Exercise-1` để truy cập vào thư mục Exercise-1
+> 2. Sau đó tiến hành chạy lệnh `cd data-engineering-practice/Exercises/Exercise-1` để truy cập vào thư mục Exercise-1
 
-Tiếp tục thực hiện lệnh: `docker build --tag=exercise-1` . build Docker image Quá trình sẽ mất vài phút
+> 3. Tiếp tục thực hiện lệnh: `docker build --tag=exercise-1 .` để build Docker image Quá trình sẽ mất vài phút
 ![image](https://github.com/user-attachments/assets/852153d1-d493-47ea-b267-8a5b6843be07)
 ![image](https://github.com/user-attachments/assets/ebf1c936-ba6c-4796-8edc-a7ef97b8eaec)
 ![image](https://github.com/user-attachments/assets/1e3beb59-a0c5-4d13-9f90-209467c30530)
 
-Sử dụng Visual để chạy main.py
+> 4. Sử dụng Visual để chạy main.py
 ![image](https://github.com/user-attachments/assets/2f38e384-09de-4d2d-aa2b-3f0613983592)
 
-Code sử dụng cho main.py
+> ##### Code sử dụng cho main.py
 ```
 import os
 
@@ -104,6 +113,7 @@ if \_\_name\_\_ == "\_\_main\_\_":
 
     main()
 ```
+> Đoạn code trên thực hiện các tác vụ: 
 - Tạo thư mục downloads nếu chưa tồn tại
 
 - Tải từng file từ danh sách download\_uris
@@ -116,19 +126,20 @@ if \_\_name\_\_ == "\_\_main\_\_":
 
 - Bỏ qua URL không hợp lệ (ví dụ: cái Divvy\_Trips\_2220\_Q1.zip không tồn tại)
 
-Sau khi save `main.py`, chạy lệnh `docker-compose up run` (mất khoảng 5 phút)
+> 5. Sau khi save `main.py`, chạy lệnh `docker-compose up run` (mất khoảng 5 phút)
 ![image](https://github.com/user-attachments/assets/1937ba2e-ce1e-4977-a496-4767dd5d4ee6)
 
-EXERCISE 2
+## EXERCISE 2
 
-Thay đổi thư mục tại CMD thành Exercise-2
+> 1. Thay đổi thư mục tại CMD thành `Exercise-2`
 
-Chạy lệnh docker build --tag=exercise-2 . để build image Docker (Quá trình diễn ra trong 2 – 3 phút)
+> 2. Chạy lệnh docker `build --tag=exercise-2 .` để build image Docker (Quá trình diễn ra trong 2 – 3 phút)
 
-Sau khi build xong, truy cập file main.py bằng VS code
+> 3. Sau khi build xong, truy cập file main.py bằng VS code
 
-Nội dung file main.py
+##### Nội dung file main.py
 
+```
 import requests
 
 from bs4 import BeautifulSoup
@@ -232,38 +243,70 @@ def main():
 if \_\_name\_\_ == "\_\_main\_\_":
 
     main()
+```
 
-Sau khi save file main.py, chạy dòng lệnh docker-compose up run
+> 4. Sau khi save file main.py, chạy dòng lệnh docker-compose up run
 
-Kết quả thu được
+> 5. Kết quả thu được
 
 
-EXERCISE 3
+## EXERCISE 3
 
-Thay đổi thư mục tại CMD thành Exercise-3
+> 1. Thay đổi thư mục tại CMD thành `Exercise-3`
 
-Chạy lệnh docker build --tag=exercise-3 . để build image Docker (Quá trình diễn ra trong 2 – 3 phút)
+> 2. Chạy lệnh docker `build --tag=exercise-3 .` để build image Docker (Quá trình diễn ra trong 2 – 3 phút)
 
-Sau khi build xong, truy cập file main.py bằng VS code
+> 3. Sau khi build xong, truy cập file main.py bằng VS code
 
-Lỗi module cgi, một thư viện chuẩn của Python dùng để xử lý các script CGI, bị thiếu. Module này là yêu cầu của thư viện botocore, một phụ thuộc của boto3 để làm việc với các dịch vụ AWS. Vì Docker image python:latest đang sử dụng không bao gồm module cgi, do phiên bản Python mới (như Python:latest trong container Docker) có thể không đi kèm với module này.
+##### Code sử dụng cho main.py:
+```
+import io
+import gzip
+import requests
+from dotenv import load_dotenv
 
- Thay đổi docker file thành FROM Python:3.9
+load_dotenv()
+def download_file_from_url(url):
+    response = requests.get(url)
+    if response.status_code == 200:
+        return response.content
+    else:
+        print(f"Error downloading file: {response.status_code}")
+        return None
+def main():
+    url = 'https://data.commoncrawl.org/crawl-data/CC-MAIN-2022-05/wet.paths.gz'
+    gz_content = download_file_from_url(url)
+    
+    if gz_content:
+        with gzip.GzipFile(fileobj=io.BytesIO(gz_content)) as f:
+            first_line = f.readline().decode('utf-8').strip() 
+            print(f"First line from wet.paths.gz: {first_line}")
+            uri = first_line
+            print(f"Extracted URI: {uri}")
+            print("\nPrinting the first 50 lines from wet.paths.gz:")
+            for i, line in enumerate(f):
+                if i >= 50:  
+                    break
+                print(line.decode('utf-8').strip()) 
+if __name__ == "__main__":
+    main()
+```
+> 4. Sau khi lưu file `main.py`, thực hiện lệnh `docker-compose up run`
+> 5. Kết quả sau khi thực hiện
+![Screenshot 2025-04-24 133824](https://github.com/user-attachments/assets/9b19ff56-eee5-41e7-a62b-5050c8958066)
 
-EXERCISE-4
 
-Thay đổi thư mục tại CMD thành Exercise-4
+## EXERCISE-4
 
-Chạy lệnh docker build --tag=exercise-4 . để build image Docker (Quá trình diễn ra trong 2 – 3 phút)
+> 1. Thay đổi thư mục tại CMD thành `Exercise-4`
 
-Nội dung file main.py
+> 2. Chạy lệnh docker `build --tag=exercise-4 .` để build image Docker (Quá trình diễn ra trong 2 – 3 phút)
 
+> 3. Nội dung file main.py
+```
 import os
-
 import json
-
 import csv
-
 import glob
 
 def flatten\_json(nested\_json, parent\_key='', sep='\_'):
@@ -355,23 +398,29 @@ def main():
 if \_\_name\_\_ == "\_\_main\_\_":
 
     main()
+```
 
-Sau khi save file main.py, thực thi lệnh docker-compose up run
+> 4. Sau khi save file main.py, thực thi lệnh `docker-compose up run`
+> 5. Kết quả sau khi thực hiện:
 
-EXERCISE-5
+![image](https://github.com/user-attachments/assets/52637e8a-7e04-48de-9cfc-7dc66e3c5ea5)
 
-Thay đổi thư mục tại CMD thành Exercise-4
+![image](https://github.com/user-attachments/assets/ca55d07c-a19c-4235-aa86-2c2815547f2b)
 
-Chạy lệnh docker build --tag=exercise-4 . để build image Docker (Quá trình diễn ra trong 2 – 3 phút)
+![image](https://github.com/user-attachments/assets/00fd665a-2b77-4ac1-9dc3-c069996521ad)
 
-Nội dung file main.py:
+## EXERCISE-5
 
+> 1.Thay đổi thư mục tại CMD thành `Exercise-4`
+
+> 2. Chạy lệnh docker `build --tag=exercise-4 .` để build image Docker (Quá trình diễn ra trong 2 – 3 phút)
+
+#### Nội dung file main.py:
+```
 import psycopg2
-
 import csv
 
 # Kết nối đến PostgreSQL
-
 conn = psycopg2.connect(
 
     dbname="postgres",  # Tên cơ sở dữ liệu
@@ -565,6 +614,12 @@ with conn.cursor() as cur:
 conn.close()
 
 print("Data has been loaded successfully.")
+```
 
-Sau khi thực thi lệnh docker-compose up run
+> 3. Sau khi lưu lại, thực thi lệnh `docker-compose up run`
+> 4. Kết quả sau khi thực hiện:
+![image](https://github.com/user-attachments/assets/e4013e15-1978-4dff-926d-69ac7c8b3a3e)
+> ó thể truy vấn các bảng vừa tạo trong DBeaver
+![image](https://github.com/user-attachments/assets/5ead3335-5ae2-4cee-b049-52af90313eae)
+
 
