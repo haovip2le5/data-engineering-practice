@@ -1,5 +1,5 @@
 # LAB 9: ULTIMATE PRACTICE
-
+## MÔN: NHẬP MÔN KỸ THUẬT DỮ LIỆU - LỚP: DHKHDL19A
 ## Danh sách thành viên:
 >> 1. Nguyễn Anh Huy
 >> 2. Lê Trung Hữu
@@ -134,8 +134,10 @@ if \_\_name\_\_ == "\_\_main\_\_":
 > 1. Thay đổi thư mục tại CMD thành `Exercise-2`
 
 > 2. Chạy lệnh docker `build --tag=exercise-2 .` để build image Docker (Quá trình diễn ra trong 2 – 3 phút)
+> ![image](https://github.com/user-attachments/assets/d3bb854c-f8e2-4a35-b4f8-dde609d5d8ff)
 
 > 3. Sau khi build xong, truy cập file main.py bằng VS code
+> ![image](https://github.com/user-attachments/assets/6ade9a73-6976-4ba5-97c5-469a2b6efc5b)
 
 ##### Nội dung file main.py
 
@@ -176,7 +178,7 @@ def find\_target\_file():
 
                 return filename
 
-    raise Exception("❌ File with timestamp 2024-01-19 10:27 not found.")
+    raise Exception("File with timestamp 2024-01-19 10:27 not found.")
 
 def download\_file(filename):
 
@@ -194,7 +196,7 @@ def download\_file(filename):
 
         f.write(response.content)
 
-    print(f"✅ Downloaded file to {local\_path}")
+    print(f"Downloaded file to {local\_path}")
 
     return local\_path
 
@@ -204,7 +206,7 @@ def analyze\_file(filepath):
 
     if 'HourlyDryBulbTemperature' not in df.columns:
 
-        raise Exception("❌ 'HourlyDryBulbTemperature' column not found in the file.")
+        raise Exception("'HourlyDryBulbTemperature' column not found in the file.")
 
     # Chuyển đổi nhiệt độ về kiểu số (nếu cần, vì có thể là string)
 
@@ -216,7 +218,7 @@ def analyze\_file(filepath):
 
     hottest\_records = df[df['HourlyDryBulbTemperature'] == max\_temp]
 
-    print("\n🌡️ Records with the highest HourlyDryBulbTemperature:")
+    print("\nRecords with the highest HourlyDryBulbTemperature:")
 
     print(hottest\_records)
 
@@ -224,21 +226,21 @@ def main():
 
     try:
 
-        print("🔍 Looking for file...")
+        print("Looking for file...")
 
         filename = find\_target\_file()
 
-        print(f"📄 Found file: {filename}")
+        print(f"Found file: {filename}")
 
         filepath = download\_file(filename)
 
-        print("📊 Analyzing file...")
+        print("Analyzing file...")
 
         analyze\_file(filepath)
 
     except Exception as e:
 
-        print(f"❌ Error: {e}")
+        print(f"Error: {e}")
 
 if \_\_name\_\_ == "\_\_main\_\_":
 
@@ -248,13 +250,14 @@ if \_\_name\_\_ == "\_\_main\_\_":
 > 4. Sau khi save file main.py, chạy dòng lệnh docker-compose up run
 
 > 5. Kết quả thu được
-
+> ![image](https://github.com/user-attachments/assets/ef39d0c0-2d63-40d6-b162-63a8d6f9552d)
 
 ## EXERCISE 3
 
 > 1. Thay đổi thư mục tại CMD thành `Exercise-3`
 
 > 2. Chạy lệnh docker `build --tag=exercise-3 .` để build image Docker (Quá trình diễn ra trong 2 – 3 phút)
+> ![image](https://github.com/user-attachments/assets/b4dc7f5e-843b-4e94-810b-596e8595e37e)
 
 > 3. Sau khi build xong, truy cập file main.py bằng VS code
 
@@ -301,6 +304,7 @@ if __name__ == "__main__":
 > 1. Thay đổi thư mục tại CMD thành `Exercise-4`
 
 > 2. Chạy lệnh docker `build --tag=exercise-4 .` để build image Docker (Quá trình diễn ra trong 2 – 3 phút)
+> ![image](https://github.com/user-attachments/assets/0429e78f-9d6b-4c9c-8d67-c06d6831a270)
 
 > 3. Nội dung file main.py
 ```
@@ -414,6 +418,7 @@ if \_\_name\_\_ == "\_\_main\_\_":
 > 1.Thay đổi thư mục tại CMD thành `Exercise-4`
 
 > 2. Chạy lệnh docker `build --tag=exercise-4 .` để build image Docker (Quá trình diễn ra trong 2 – 3 phút)
+> ![image](https://github.com/user-attachments/assets/3eb12b93-1146-4adf-bba8-5ad4cc3750fd)
 
 #### Nội dung file main.py:
 ```
