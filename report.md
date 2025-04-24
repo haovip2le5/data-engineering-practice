@@ -1,4 +1,4 @@
-# REPORT - LAB 9: ULTIMATE PRACTICE
+![image](https://github.com/user-attachments/assets/ab0e7d7b-3c66-427c-a4ce-d3cedbddfe76)# REPORT - LAB 9: ULTIMATE PRACTICE
 ## MÔN: NHẬP MÔN KỸ THUẬT DỮ LIỆU - LỚP: DHKHDL19A
 ## Danh sách thành viên:
 >> 1. Nguyễn Anh Huy
@@ -627,4 +627,42 @@ print("Data has been loaded successfully.")
 > Truy vấn các bảng vừa tạo trong DBeaver
 ![image](https://github.com/user-attachments/assets/5ead3335-5ae2-4cee-b049-52af90313eae)
 
+## PIPELINE TỰ ĐỘNG THỰC HIỆN BÀI TẬP 1- 5
+#### Code cho pipeline.py:
+```
+import importlib.util
+import os
 
+def run_exercise(path):
+    full_path = os.path.abspath(path)
+    module_name = os.path.basename(os.path.dirname(path))  # Ví dụ: Exercise-1
+
+    spec = importlib.util.spec_from_file_location(module_name, full_path)
+    module = importlib.util.module_from_spec(spec)
+    spec.loader.exec_module(module)
+    if hasattr(module, 'main'):
+        module.main()
+    else:
+        print(f"{module_name} does not have a main() function.")
+
+def main():
+    print("Running Exercise 1...")
+    run_exercise("Exercises/Exercise-1/main.py")
+
+    print("\nRunning Exercise 2...")
+    run_exercise("Exercises/Exercise-2/main.py")
+
+    print("\nRunning Exercise 3...")
+    run_exercise("Exercises/Exercise-3/main.py")
+
+    print("\nRunning Exercise 4...")
+    run_exercise("Exercises/Exercise-4/main.py")
+
+    print("\nRunning Exercise 5...")
+    run_exercise("Exercises/Exercise-5/main.py")
+
+if __name__ == "__main__":
+    main()
+```
+> #### Kết quả thực hiện:
+> 
