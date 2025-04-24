@@ -1,4 +1,4 @@
-![image](https://github.com/user-attachments/assets/ab0e7d7b-3c66-427c-a4ce-d3cedbddfe76)# REPORT - LAB 9: ULTIMATE PRACTICE
+# REPORT - LAB 9: ULTIMATE PRACTICE
 ## MÔN: NHẬP MÔN KỸ THUẬT DỮ LIỆU - LỚP: DHKHDL19A
 ## Danh sách thành viên:
 >> 1. Nguyễn Anh Huy
