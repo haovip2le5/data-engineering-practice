@@ -630,39 +630,67 @@ print("Data has been loaded successfully.")
 ## PIPELINE TỰ ĐỘNG THỰC HIỆN BÀI TẬP 1- 5
 #### Code cho pipeline.py:
 ```
-import importlib.util
 import os
+import subprocess
 
-def run_exercise(path):
-    full_path = os.path.abspath(path)
-    module_name = os.path.basename(os.path.dirname(path))  # Ví dụ: Exercise-1
+# List các Exercise bạn muốn chạy
+exercises = ['Exercise-1', 'Exercise-2', 'Exercise-3', 'Exercise-4', 'Exercise-5']
 
-    spec = importlib.util.spec_from_file_location(module_name, full_path)
-    module = importlib.util.module_from_spec(spec)
-    spec.loader.exec_module(module)
-    if hasattr(module, 'main'):
-        module.main()
-    else:
-        print(f"{module_name} does not have a main() function.")
+# Hàm kiểm tra xem image đã có chưa
+def check_image_exists(image_name):
+    result = subprocess.run(['docker', 'images', '-q', image_name], stdout=subprocess.PIPE)
+    return result.stdout.decode().strip() != ''
 
-def main():
-    print("Running Exercise 1...")
-    run_exercise("Exercises/Exercise-1/main.py")
+# Hàm build image nếu chưa có
+def build_image(exercise_name):
+    print(f"Image {exercise_name} chưa có, bắt đầu build...")
+    result = subprocess.run(['docker', 'build', '-t', exercise_name, f'D:/NMKTDL/data-engineering-practice-main/Exercises/{exercise_name}'], stdout=subprocess.PIPE, stderr=subprocess.PIPE)
+    if result.returncode != 0:
+        print(f"Build image {exercise_name} thất bại. Dừng pipeline.")
+        print(result.stderr.decode())
+        exit(1)
+    print(f"Build image {exercise_name} thành công.")
 
-    print("\nRunning Exercise 2...")
-    run_exercise("Exercises/Exercise-2/main.py")
+# Hàm chạy docker-compose
+def run_docker_compose(exercise_name):
+    print(f"Đang chạy {exercise_name} bằng image {exercise_name}...")
+    compose_file = f'D:/NMKTDL/data-engineering-practice-main/Exercises/{exercise_name}/docker-compose.yml'
+    result = subprocess.run(['docker-compose', '-f', compose_file, 'up'], stdout=subprocess.PIPE, stderr=subprocess.PIPE)
+    if result.returncode != 0:
+        print(f"Lỗi khi chạy {exercise_name}. Dừng pipeline.")
+        print(result.stderr.decode())
+        exit(1)
+    
+    # Kiểm tra logs của các container
+    print("Kiểm tra logs của các container...")
+    logs_result = subprocess.run(['docker-compose', '-f', compose_file, 'logs'], stdout=subprocess.PIPE, stderr=subprocess.PIPE)
+    print(logs_result.stdout.decode())  # In logs để xem chi tiết
 
-    print("\nRunning Exercise 3...")
-    run_exercise("Exercises/Exercise-3/main.py")
+    print(f"{exercise_name} đã hoàn tất!")
 
-    print("\nRunning Exercise 4...")
-    run_exercise("Exercises/Exercise-4/main.py")
+# Pipeline
+def run_pipeline():
+    for exercise in exercises:
+        # Kiểm tra image đã tồn tại chưa
+        if not check_image_exists(exercise.lower()):
+            build_image(exercise)
+        else:
+            print(f"Image {exercise} đã có sẵn.")
+        
+        # Chạy docker-compose cho bài
+        run_docker_compose(exercise)
 
-    print("\nRunning Exercise 5...")
-    run_exercise("Exercises/Exercise-5/main.py")
+    print("\nPipeline hoàn tất!")
 
 if __name__ == "__main__":
-    main()
+    run_pipeline()
 ```
 > #### Kết quả thực hiện:
+> ##### Exercise-1
+> ![image](https://github.com/user-attachments/assets/63d6cecb-88f2-48c4-816d-1dfc4b767f61)
+> ##### Exercise-2 & 3
+> ![image](https://github.com/user-attachments/assets/fedd1e65-6da1-4dc1-b9c3-ad1e2b8f21a3)
+> ##### Exercise-4
+> ![image](https://github.com/user-attachments/assets/71196633-75a3-4ead-b33b-21cdd6eafd2f)
 > 
+
